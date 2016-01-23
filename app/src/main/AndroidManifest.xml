@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="krishv16.bluetoothlistenerservice">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:theme="@style/AppTheme">
+
+        <activity
+            android:name=".ServiceMgr"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--Service declared in manifest -->
+        <service android:name=".BluetoothListenerService"
+            android:exported="false"/>
+    </application>
+
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+
+</manifest>
