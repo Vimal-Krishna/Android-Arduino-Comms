@@ -30,6 +30,7 @@ public class BluetoothListenerService extends Service {
     private static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     private static String address = "20:15:08:13:20:94";
+    //private static String address = "C4:00:00:5C:91:25";
 
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
@@ -61,7 +62,8 @@ public class BluetoothListenerService extends Service {
         BluetoothDevice device = btAdapter.getRemoteDevice(address);
 
         try {
-            btSocket = device.createRfcommSocketToServiceRecord(SPP_UUID);
+            //btSocket = device.createRfcommSocketToServiceRecord(SPP_UUID);
+            btSocket = device.createInsecureRfcommSocketToServiceRecord(SPP_UUID);
             btAdapter.cancelDiscovery();
             btSocket.connect();
         } catch (IOException e) {
@@ -157,21 +159,21 @@ public class BluetoothListenerService extends Service {
                                                 startActivity(intent);
 
                                             }
-                                            else if (data.compareTo("play") == 0)
+                                            else if (data.compareTo("R2B") == 0)
                                             {
                                                 raiseMediaKeyevent(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
                                             }
-                                            else if (data.compareTo("next") == 0)
+                                            else if (data.compareTo("R1R") == 0)
                                             {
                                                 raiseMediaKeyevent(KeyEvent.KEYCODE_MEDIA_NEXT);
                                             }
-                                            else if (data.compareTo("prev") == 0)
+                                            else if (data.compareTo("R1L") == 0)
                                             {
                                                 raiseMediaKeyevent(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
                                             }
-                                            else if (data.compareTo("test") == 0)
+                                            else if (data.compareTo("R1B") == 0)
                                             {
-                                                raiseMediaKeyevent(KeyEvent.KEYCODE_NAVIGATE_IN);
+                                                raiseMediaKeyevent(KeyEvent.KEYCODE_MEDIA_FAST_FORWARD);
                                             }
 
                                             Log.d(TAG, "Started " + data);
